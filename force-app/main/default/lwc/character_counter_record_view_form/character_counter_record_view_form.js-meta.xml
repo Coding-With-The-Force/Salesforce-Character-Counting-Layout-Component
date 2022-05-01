@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <description>The record view portion of the character counting component</description>
+    <isExposed>false</isExposed>
+    <masterLabel>Character Counter Record View Form</masterLabel>
+</LightningComponentBundle>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <description>This component allows you to show the remaining characters in your text fields</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Character Counting Component</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="sectionHeader" type="String" description="The header that you would like to be displayed at the top
+            of the component"></property>
+            <property name="fieldSetName" type="String" description="This is the name of a field set on the object that
+            holds the fields you would like to display" required="true"></property>
+            <property name="fieldColumns" type="String" description="This determines how many columns you would like your fields
+            to display in." required="true" datasource="1, 2" default="2"></property>
+            <property name="renderEditButton" type="Boolean" description="If you would like to allow users to be able to edit fields
+            using this component set this to true. This is primarily turned off for component composition." default="true"></property>
+            <property name="renderSaveButton" type="Boolean" description="If you would like to allow users to be able to save their edited fields
+            using this component set this to true. This is primarily turned off for component composition." default="true"></property>
+            <property name="displayAsFieldSection" type="Boolean" description="If you would like this component to display itself
+            like a field section on a page layout would, check this box" default="false"></property>
+            <property name="displayAsIndependentSection" type="Boolean" description="If you would like this component to display itself
+            like an independent component in the lightning page, check this box" default="true"></property>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
