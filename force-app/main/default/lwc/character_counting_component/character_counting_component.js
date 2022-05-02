@@ -21,9 +21,11 @@ export default class CharacterCountingComponent extends LightningElement {
 	@api displayAsIndependentSection = false;
 	@api fieldColumns = 1;
 	@api characterWarningThreshold = 25;
+	@api iconName = "";
 
 	@track fieldData;
 	errorMsg;
+	@track activeSections = [];
 	userEditing = false;
 	dataRetrieved = false;
 
@@ -33,8 +35,13 @@ export default class CharacterCountingComponent extends LightningElement {
 
 	async connectedCallback() {
 		await loadStyle(this, characterCountingComponentStyle);
+		this.setActiveSections();
 		this.canUserEditRecord();
 		this.getFieldsToDisplay();
+	}
+
+	setActiveSections(){
+		this.activeSections = [this.sectionHeader];
 	}
 
 	canUserEditRecord(){

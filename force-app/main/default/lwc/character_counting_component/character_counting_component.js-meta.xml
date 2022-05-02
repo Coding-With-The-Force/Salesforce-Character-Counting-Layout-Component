@@ -13,6 +13,9 @@
             of the component"></property>
             <property name="fieldSetName" type="String" description="This is the name of a field set on the object that
             holds the fields you would like to display" required="true"></property>
+            <property name="iconName" type="String" description="This is the name the icon you would like to display in the
+            independent component's lightning card. There is a list available here: https://www.lightningdesignsystem.com/icons/"
+            required="false"></property>
             <property name="characterWarningThreshold" type="Integer" default="25" required="true" description="The number that you place here determines when the
             red warning text starts to display in the character counting component."></property>
             <property name="fieldColumns" type="String" description="This determines how many columns you would like your fields

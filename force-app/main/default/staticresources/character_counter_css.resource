@@ -33,3 +33,18 @@
     fill: #dddbda !important;
     cursor: pointer;
 }
+
+.card-background .slds-card__header{
+    background-color: #f3f3f3 !important;
+    padding: 10px !important;
+    border: #e5e5e5 1px solid !important;
+    border-radius: 0.25rem;
+}
+
+.card-background .slds-card{
+    border: #e5e5e5 1px solid !important;
+}
+
+.card-background .slds-card__body{
+    margin: 10px !important;
+}

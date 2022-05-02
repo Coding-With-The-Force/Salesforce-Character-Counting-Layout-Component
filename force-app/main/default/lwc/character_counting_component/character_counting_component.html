@@ -4,7 +4,7 @@
 
 <!-- Character Counting Component -->
 <template>
-	<lightning-card class="card-background" if:true={displayAsIndependentSection} title={sectionHeader} variant="narrow">
+	<lightning-card class="card-background" if:true={displayAsIndependentSection} title={sectionHeader} variant="narrow" icon-name={iconName}>
 		<c-character_counter_record_view_form if:true={notEditingAndDataRetrieved}
 											  record-id={recordId}
 											  object-api-name={objectApiName}
@@ -23,9 +23,14 @@
 		</c-character_counter_record_edit_component>
 	</lightning-card>
 
-	<lightning-accordion if:true={displayAsFieldSection} active-section-name={sectionHeader}>
-		<lightning-accordion-section class="counting-accordion" if:true={displayAsFieldSection} name={sectionHeader} label={sectionHeader}>
+	<lightning-accordion if:true={displayAsFieldSection}
+						 active-section-name={activeSections}
+						 allow-multiple-sections-open>
+		<lightning-accordion-section class="counting-accordion"
+									 name={sectionHeader}
+									 label={sectionHeader}>
 			<c-character_counter_record_view_form if:true={notEditingAndDataRetrieved}
+												  class="toggle"
 												  record-id={recordId}
 												  object-api-name={objectApiName}
 												  field-data={fieldData}
@@ -33,6 +38,7 @@
 												  onenableedit={enableEditing}>
 			</c-character_counter_record_view_form>
 			<c-character_counter_record_edit_component if:true={userEditing}
+													   class="toggle"
 													   record-id={recordId}
 													   object-api-name={objectApiName}
 													   field-data={fieldData}
@@ -42,5 +48,6 @@
 													   onupdatefielddata={updateFieldData}>
 			</c-character_counter_record_edit_component>
 		</lightning-accordion-section>
+		<lightning-accordion-section class="slds-hidden"></lightning-accordion-section>
 	</lightning-accordion>
 </template>
