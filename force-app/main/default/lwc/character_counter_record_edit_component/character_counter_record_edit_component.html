@@ -8,25 +8,25 @@
 		<template for:each={fieldDataCopy} for:item="field" for:index="index">
 			<template if:true={field.isString}>
 				<template if:false={field.noCharsLeft}>
-					<lightning-input-field key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} ></lightning-input-field>
+					<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} ></lightning-input-field>
 				</template>
 				<template if:true={field.noCharsLeft}>
-					<lightning-input-field key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} disabled="true"></lightning-input-field>
+					<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} disabled="true"></lightning-input-field>
 				</template>
-				<template if:false={field.below25Chars}>
-					<p key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
+				<template if:false={field.belowCharsThreshold}>
+					<p class="characters-remaining" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
 				</template>
-				<template if:true={field.below25Chars}>
-					<p style="color:red" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
+				<template if:true={field.belowCharsThreshold}>
+					<p class="characters-remaining-red" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
 				</template>
 			</template>
 			<template if:false={field.isString}>
 				<lightning-input-field key={field.fieldApiName} field-name={field.fieldApiName}></lightning-input-field>
 			</template>
 		</template>
-		<div class="slds-grid_align-center">
-			<lightning-button class="slds-p-around_medium" if:true={renderSaveButton} variant="brand" type="submit" name="Save" label="Save"></lightning-button>
-			<lightning-button class="slds-p-around_medium" if:true={renderSaveButton} variant="brand-outline" label="Cancel" onclick={disableEditing}></lightning-button>
+		<div class="slds-align_absolute-center">
+			<lightning-button class="slds-p-around_x-small" if:true={renderSaveButton} variant="brand" type="submit" name="Save" label="Save"></lightning-button>
+			<lightning-button class="slds-p-around_x-small" if:true={renderSaveButton} variant="brand-outline" label="Cancel" onclick={disableEditing}></lightning-button>
 		</div>
 	</lightning-record-edit-form>
 </template>

@@ -6,6 +6,7 @@ import {LightningElement, api, track} from 'lwc';
 import {loadStyle} from "lightning/platformResourceLoader";
 import characterCountingComponentStyle from '@salesforce/resourceUrl/character_counter_css';
 import getFieldsToDisplayController from '@salesforce/apex/Character_Counting_Component_Controller.getFieldsToDisplay';
+import canUserEditRecordController from '@salesforce/apex/Character_Counting_Component_Controller.canUserEditRecord';
 import {ShowToastEvent} from "lightning/platformShowToastEvent";
 
 
@@ -19,6 +20,7 @@ export default class CharacterCountingComponent extends LightningElement {
 	@api displayAsFieldSection = false;
 	@api displayAsIndependentSection = false;
 	@api fieldColumns = 1;
+	@api characterWarningThreshold = 25;
 
 	@track fieldData;
 	errorMsg;
@@ -31,12 +33,24 @@ export default class CharacterCountingComponent extends LightningElement {
 
 	async connectedCallback() {
 		await loadStyle(this, characterCountingComponentStyle);
+		this.canUserEditRecord();
 		this.getFieldsToDisplay();
 	}
 
+	canUserEditRecord(){
+		canUserEditRecordController({recordId: this.recordId}).then(canUserEdit =>{
+			if(canUserEdit === false && this.renderEditButton === true) {
+				this.renderEditButton = canUserEdit;
+			}
+		}).catch(error =>{
+			this.displayErrors(error);
+		});
+	}
+
+
 	getFieldsToDisplay(){
 		getFieldsToDisplayController({fieldSetName: this.fieldSetName, objectApiName: this.objectApiName,
-			recordId: this.recordId}).then(fieldInfo =>{
+			recordId: this.recordId, characterWarningThreshold: this.characterWarningThreshold}).then(fieldInfo =>{
 				console.log('This is the field data ::: ' + JSON.stringify(fieldInfo));
 			this.fieldData = fieldInfo;
 			this.dataRetrieved = true;

@@ -1,6 +1,11 @@
 /* character_counter_css */
-.characters-remaining{
+.characters-remaining, .characters-remaining-red{
     font-size: 10px;
+    padding: 0.25rem;
+}
+
+.characters-remaining-red{
+    color: red;
 }
 
 .field-spacing{
@@ -27,9 +32,4 @@
 .edit-icon .slds-button__icon{
     fill: #dddbda !important;
     cursor: pointer;
-}
-
-[c-character_counter_record_view_form_character_counter_record_view_form].slds-form-element_stacked:not(.slds-is-editing){
-    padding: 0 0 0 0 !important;
-    margin-bottom: 0 !important;
 }

@@ -9,6 +9,7 @@ export default class CharacterCounterRecordEditComponent extends LightningElemen
 	@api objectApiName;
 	@api fieldData;
 	@api renderSaveButton;
+	@api characterWarningThreshold;
 	@track fieldDataCopy;
 	CHARACTERS_REMAINING = 'characters remaining';
 
@@ -29,11 +30,11 @@ export default class CharacterCounterRecordEditComponent extends LightningElemen
 	}
 
 	checkFieldConstraints(field){
-		if(field.charactersRemaining <= 25){
-			field.below25Chars = true;
+		if(field.charactersRemaining <= this.characterWarningThreshold){
+			field.belowCharsThreshold = true;
 		}
 		else{
-			field.below25Chars = false;
+			field.belowCharsThreshold = false;
 		}
 		if(field.noCharsLeft === 0){
 			field.noCharsLeft = true;
