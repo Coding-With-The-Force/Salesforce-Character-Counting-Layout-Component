@@ -52,3 +52,7 @@
 .card-background .slds-card__body{
     margin: 10px !important;
 }
+
+.inline-grid{
+    display: inline-grid;
+}

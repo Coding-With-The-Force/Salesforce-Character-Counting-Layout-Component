@@ -6,23 +6,25 @@
 <template>
 	<lightning-record-edit-form object-api-name={objectApiName} record-id={recordId} onsubmit={saveData} onsuccess={handleSaveSuccess}>
 		<template for:each={fieldDataCopy} for:item="field" for:index="index">
-			<template if:true={field.isString}>
-				<template if:false={field.noCharsLeft}>
-					<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} ></lightning-input-field>
+			<div key={field.fieldApiName} class={columnClasses}>
+				<template if:true={field.isString}>
+					<template if:false={field.noCharsLeft}>
+						<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} ></lightning-input-field>
+					</template>
+					<template if:true={field.noCharsLeft}>
+						<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} disabled="true"></lightning-input-field>
+					</template>
+					<template if:false={field.belowCharsThreshold}>
+						<p class="characters-remaining" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
+					</template>
+					<template if:true={field.belowCharsThreshold}>
+						<p class="characters-remaining-red" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
+					</template>
 				</template>
-				<template if:true={field.noCharsLeft}>
-					<lightning-input-field class="character-counter" key={field.fieldApiName} field-name={field.fieldApiName} onchange={determineCharactersLeft} disabled="true"></lightning-input-field>
+				<template if:false={field.isString}>
+					<lightning-input-field key={field.fieldApiName} field-name={field.fieldApiName}></lightning-input-field>
 				</template>
-				<template if:false={field.belowCharsThreshold}>
-					<p class="characters-remaining" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
-				</template>
-				<template if:true={field.belowCharsThreshold}>
-					<p class="characters-remaining-red" key={field.fieldApiName}>{field.charactersRemaining} {CHARACTERS_REMAINING} out of {field.stringFieldLength}</p>
-				</template>
-			</template>
-			<template if:false={field.isString}>
-				<lightning-input-field key={field.fieldApiName} field-name={field.fieldApiName}></lightning-input-field>
-			</template>
+			</div>
 		</template>
 		<div class="slds-align_absolute-center">
 			<lightning-button class="slds-p-around_x-small" if:true={renderSaveButton} variant="brand" type="submit" name="Save" label="Save"></lightning-button>
