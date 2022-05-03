@@ -1,9 +1,18 @@
 # The Salesforce Character Counting Component
-
+<p align="center">
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
+<br/>
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzVQAQ">
+<img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-sandbox.png?raw=true">
+</a>
+<a style="padding-left: 10px" href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzVQAQ">
+<img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
+</a>
+</p>
+
 
 Ever wished you could see how many characters were left when entering text into a 
 text field in Salesforce?? Well this is the answer! It works on every field in every 
@@ -34,12 +43,24 @@ Click the images below to check out what this component can look and feel like! 
 ---
 # Installation
 
-You can currently install the component either by using the installation link at the top of this page, or the one below! I plan to eventually add an unlocked package link as well.
-Click the button, connect to your org, deploy the code and you're off to the races!
+You can currently install the component via any of the three links below. I would personally suggest leveraging the unlocked packaging options as it will allow you to easily keep up with updates for the component and keep it self-contained.
 
+However if you are adverse to unlocked packaging (for some crazy reason) you can use the "Deploy to Salesforce" button which will deploy the code, without the packaging, to your organization. 
+
+
+<p><b><i>Deploy to your org without packaging using the link below:</i></b></p>
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+<br/>
+
+<p><b><i>Deploy to your org with packaging using one of the links below (HIGHLY SUGGESTED!!):</i></b></p>
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzVQAQ">
+<img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-sandbox.png?raw=true">
+</a>
+<a style="padding-left: 10px" href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzVQAQ">
+<img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
 </a>
 
 ---
