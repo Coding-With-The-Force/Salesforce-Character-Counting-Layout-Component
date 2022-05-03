@@ -51,11 +51,17 @@ public with sharing class Character_Counting_Component_Service
 	private List<Schema.FieldSetMember> getFieldSetFields(String fieldSetName)
 	{
 		if (!describes.isEmpty()) {
-			return describes[0].fieldSets.getMap().get(fieldSetName).fields;
+			try{
+				return describes[0].fieldSets.getMap().get(fieldSetName).fields;
+			}
+			catch(Exception ex){
+				throw new CharacterCountingException('The field set you entered for this object does not exist! ' +
+						'Please check the name of the field set you passed into the component!');
+			}
 		}
 		else{
-			throw new CharacterCountingException('No field set for this object exists! ' +
-					'Please check the name of the field set you passed into the component!');
+			throw new CharacterCountingException('The object api name you passed into the component is invalid! ' +
+					'Please check the name of the object api name you passed into the component!');
 		}
 	}
 

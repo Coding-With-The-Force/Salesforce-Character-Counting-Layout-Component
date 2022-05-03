@@ -57,8 +57,9 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 	@api saveData(event){
 		event.preventDefault();
 		this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
-		console.log('The record Id is ::: ' + this.recordId);
-		this.updateFieldData();
+		if(this.recordId) {
+			this.updateFieldData();
+		}
 	}
 
 	handleSaveSuccess(event){
