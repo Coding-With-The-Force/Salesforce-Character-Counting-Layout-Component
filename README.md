@@ -1,6 +1,6 @@
 # The Salesforce Character Counting Component
 
-<a href="https://githubsfdeploy.herokuapp.com?owner=Coding-With-The-Force&repo=Salesforce_Character_Counting_Component&ref=main">
+<a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
