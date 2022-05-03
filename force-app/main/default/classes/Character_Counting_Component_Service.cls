@@ -20,7 +20,30 @@ public with sharing class Character_Counting_Component_Service
 
 	public List<FieldData> getFieldsToDisplay(String fieldSetName, String objectApiName, Id recordId, Integer characterWarningThreshold){
 		describes = Schema.describeSObjects(new String[]{objectApiName});
-		return getRecordData(getFieldSetFields(fieldSetName), recordId, characterWarningThreshold);
+		System.debug('This is the Id ::: ' + recordId);
+		if(recordId != null){
+			return getRecordData(getFieldSetFields(fieldSetName), recordId, characterWarningThreshold);
+		}
+		else{
+			return createFieldDataWithNoExistingRecord(getFieldSetFields(fieldSetName));
+		}
+	}
+
+	public List<FieldData> createFieldDataWithNoExistingRecord(List<Schema.FieldSetMember> fieldMetatdata){
+		List<FieldData> fieldDataList = new List<FieldData>();
+		Map<String, SObjectField> fieldMap = describes[0].fields.getMap();
+		for(Schema.FieldSetMember field: fieldMetatdata){
+			FieldData fieldInfo = new FieldData();
+			fieldInfo.fieldApiName = field.getFieldPath();
+			if(field.getType().name() == 'STRING' || field.getType().name() == 'TEXTAREA'){
+				SObjectField fieldMetadata = fieldMap.get(field.getFieldPath());
+				fieldInfo.stringFieldLength = fieldMetadata.getDescribe().getLength();
+				fieldInfo.charactersRemaining = fieldInfo.stringFieldLength;
+				fieldInfo.isString = true;
+			}
+			fieldDataList.add(fieldInfo);
+		}
+		return fieldDataList;
 	}
 
 	private List<Schema.FieldSetMember> getFieldSetFields(String fieldSetName)
@@ -40,7 +63,6 @@ public with sharing class Character_Counting_Component_Service
 		Map<String, SObjectField> fieldMap = describes[0].fields.getMap();
 		for(Schema.FieldSetMember field: fieldSetFields){
 			FieldData fieldInfo = new FieldData();
-			determineColumnSplit(fieldInfo, fieldSetFields.size());
 			fieldInfo.fieldApiName = field.getFieldPath();
 			query += fieldInfo.fieldApiName + ',';
 			if(field.getType().name() == 'STRING' || field.getType().name() == 'TEXTAREA'){
@@ -55,15 +77,6 @@ public with sharing class Character_Counting_Component_Service
 		System.debug('This is the query ::: ' + query);
 		fieldDataMap = queryForFieldData(query, fieldDataMap, characterWarningThreshold);
 		return fieldDataMap.values();
-	}
-
-	private void determineColumnSplit(FieldData fieldInfo, Integer fieldSetLength){
-		if(Math.mod(fieldSetLength, 2) != 0){
-			fieldInfo.columnSplitPoint = (fieldSetLength/2) + 1;
-		}
-		else{
-			fieldInfo.columnSplitPoint = fieldSetLength;
-		}
 	}
 
 	private Map<String, FieldData> queryForFieldData(String query, Map<String, FieldData> fieldDataMap, Integer characterWarningThreshold){
@@ -91,15 +104,15 @@ public with sharing class Character_Counting_Component_Service
 				FieldData fieldInfo = fieldDataMap.get(fieldName);
 				if(fieldInfo.isString){
 					String stringField = (String)obj.get(fieldInfo.fieldApiName);
-					if(stringField == null){continue;}
-					fieldInfo.fieldValue = stringField;
+					if(stringField == null){
+						fieldInfo.charactersRemaining = fieldInfo.stringFieldLength;
+						fieldDataMapClone.put(fieldInfo.fieldApiName, fieldInfo);
+						continue;
+					}
 					fieldInfo.currentLength = stringField.length();
 					fieldInfo.charactersRemaining = fieldInfo.stringFieldLength - fieldInfo.currentLength;
 					if(fieldInfo.charactersRemaining <= characterWarningThreshold){
 						fieldInfo.belowCharsThreshold = true;
-					}
-					if(fieldInfo.charactersRemaining ==0){
-						fieldInfo.noCharsLeft = true;
 					}
 					fieldDataMapClone.put(fieldInfo.fieldApiName, fieldInfo);
 				}
@@ -109,8 +122,6 @@ public with sharing class Character_Counting_Component_Service
 	}
 
 	public class FieldData{
-		@AuraEnabled
-		public String fieldValue;
 		@AuraEnabled
 		public String fieldApiName;
 		@AuraEnabled
@@ -122,11 +133,7 @@ public with sharing class Character_Counting_Component_Service
 		@AuraEnabled
 		public Boolean isString = false;
 		@AuraEnabled
-		public Boolean noCharsLeft = false;
-		@AuraEnabled
 		public Boolean belowCharsThreshold = false;
-		@AuraEnabled
-		public Integer columnSplitPoint;
 	}
 
 	private class CharacterCountingException extends Exception{}

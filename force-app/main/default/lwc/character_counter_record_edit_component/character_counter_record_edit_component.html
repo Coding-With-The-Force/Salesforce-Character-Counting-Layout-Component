@@ -4,7 +4,7 @@
 
 <!-- Character Counter Record Edit Component -->
 <template>
-	<lightning-record-edit-form object-api-name={objectApiName} record-id={recordId} onsubmit={saveData}>
+	<lightning-record-edit-form object-api-name={objectApiName} record-id={recordId} onsubmit={saveData} onsuccess={handleSaveSuccess}>
 		<template for:each={fieldDataCopy} for:item="field" for:index="index">
 			<template if:true={field.isString}>
 				<template if:false={field.noCharsLeft}>

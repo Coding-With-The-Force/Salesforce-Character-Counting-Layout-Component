@@ -8,12 +8,12 @@ public with sharing class Character_Counting_Component_Controller
 
 	@AuraEnabled
 	public static List<Character_Counting_Component_Service.FieldData> getFieldsToDisplay(String fieldSetName, String objectApiName, Id recordId, Integer characterWarningThreshold){
-		try{
+		//try{
 			return countingService.getFieldsToDisplay(fieldSetName, objectApiName, recordId, characterWarningThreshold);
-		}
-		catch(Exception ex){
-			throw new AuraHandledException(ex.getMessage());
-		}
+		//}
+		//catch(Exception ex){
+		//	throw new AuraHandledException(ex.getMessage());
+		//}
 	}
 
 	@AuraEnabled

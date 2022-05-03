@@ -28,15 +28,26 @@ export default class CharacterCountingComponent extends LightningElement {
 	@track activeSections = [];
 	userEditing = false;
 	dataRetrieved = false;
+	userCreatingRecord = false;
 
 	@api saveData(){
 		this.template.querySelector('c-character_counter_record_view_form').saveData();
 	}
 
 	async connectedCallback() {
+		await this.prepComponent();
+	}
+
+	async prepComponent(){
 		await loadStyle(this, characterCountingComponentStyle);
 		this.setActiveSections();
-		this.canUserEditRecord();
+		if(this.recordId) {
+			this.canUserEditRecord();
+		}
+		else{
+			console.log('Got into the creation block :::');
+			this.userCreatingRecord = true;
+		}
 		this.getFieldsToDisplay();
 	}
 
@@ -103,7 +114,13 @@ export default class CharacterCountingComponent extends LightningElement {
 	}
 
 	get notEditingAndDataRetrieved(){
-		if(!this.userEditing && this.dataRetrieved){
+		if(this.userEditing === false && this.userCreatingRecord === false && this.dataRetrieved === true){
+			return true;
+		}
+	}
+
+	get userEditingOrCreating(){
+		if((this.userEditing === true || this.userCreatingRecord === true) && this.dataRetrieved === true){
 			return true;
 		}
 	}

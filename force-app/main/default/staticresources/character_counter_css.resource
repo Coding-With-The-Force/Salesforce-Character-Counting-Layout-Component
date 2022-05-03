@@ -4,6 +4,10 @@
     padding: 0.25rem;
 }
 
+.counting-accordion .slds-accordion__section{
+    background-color: rgb(255, 255, 255);
+}
+
 .characters-remaining-red{
     color: red;
 }

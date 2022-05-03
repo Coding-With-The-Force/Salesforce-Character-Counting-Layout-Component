@@ -12,7 +12,7 @@
 											  render-edit-button={renderEditButton}
 											  onenableedit={enableEditing}>
 		</c-character_counter_record_view_form>
-		<c-character_counter_record_edit_component if:true={userEditing}
+		<c-character_counter_record_edit_component if:true={userEditingOrCreating}
 												   record-id={recordId}
 												   object-api-name={objectApiName}
 												   field-data={fieldData}
@@ -23,7 +23,7 @@
 		</c-character_counter_record_edit_component>
 	</lightning-card>
 
-	<lightning-accordion if:true={displayAsFieldSection}
+	<lightning-accordion if:true={displayAsFieldSection} class="accordion-background"
 						 active-section-name={activeSections}
 						 allow-multiple-sections-open>
 		<lightning-accordion-section class="counting-accordion"
@@ -37,7 +37,7 @@
 												  render-edit-button={renderEditButton}
 												  onenableedit={enableEditing}>
 			</c-character_counter_record_view_form>
-			<c-character_counter_record_edit_component if:true={userEditing}
+			<c-character_counter_record_edit_component if:true={userEditingOrCreating}
 													   class="toggle"
 													   record-id={recordId}
 													   object-api-name={objectApiName}

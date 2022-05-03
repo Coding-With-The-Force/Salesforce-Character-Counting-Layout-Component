@@ -1,0 +1,12 @@
+<!--
+ - Created by gerry on 5/2/2022.
+ -->
+
+<aura:component description="character_counter_new_record_form"  implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+	<c:character_counting_component objectApiName="Account"
+									sectionHeader="New Record"
+									fieldSetName="AccountFields"
+									displayAsFieldSection="true"
+									renderSaveButton="true">
+	</c:character_counting_component>
+</aura:component>

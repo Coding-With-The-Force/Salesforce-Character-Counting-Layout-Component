@@ -3,8 +3,9 @@
  */
 
 import {LightningElement, api, track} from 'lwc';
+import {NavigationMixin} from "lightning/navigation";
 
-export default class CharacterCounterRecordEditComponent extends LightningElement {
+export default class CharacterCounterRecordEditComponent extends NavigationMixin(LightningElement) {
 	@api recordId;
 	@api objectApiName;
 	@api fieldData;
@@ -47,7 +48,27 @@ export default class CharacterCounterRecordEditComponent extends LightningElemen
 	@api saveData(event){
 		event.preventDefault();
 		this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
+		console.log('The record Id is ::: ' + this.recordId);
 		this.updateFieldData();
+	}
+
+	handleSaveSuccess(event){
+		if(!this.recordId){
+			this.navigateToNewRecordPage(event.detail.id);
+		}
+	}
+
+	navigateToNewRecordPage(recordId){
+		console.log('Trying to navigate');
+		// View a custom object record.
+		this[NavigationMixin.Navigate]({
+			type: 'standard__recordPage',
+			attributes: {
+				recordId: recordId,
+				objectApiName: this.objectApiName,
+				actionName: 'view'
+			}
+		});
 	}
 
 	disableEditing(){
