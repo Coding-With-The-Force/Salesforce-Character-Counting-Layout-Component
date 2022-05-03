@@ -9,6 +9,8 @@ Ever wished you could see how many characters were left when entering text into 
 text field in Salesforce?? Well this is the answer! It works on every field in every 
 field combination and it's completely driven by field sets! No custom code ever again!
 
+Click the images below to check out what this component can look and feel like! Remember though, there are tons of config options, so you can change this up quite a bit!
+
 ![Character Counting View Display](https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/CharacterCounterView.JPG?raw=true)
 ![Character Counting View Display](https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/CharacterCounterEdit.JPG?raw=true)
 
