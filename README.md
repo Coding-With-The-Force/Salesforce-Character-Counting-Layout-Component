@@ -11,7 +11,10 @@ field combination and it's completely driven by field sets! No custom code ever 
 
 Click the images below to check out what this component can look and feel like! Remember though, there are tons of config options, so you can change this up quite a bit!
 
+<b>The Character Counter's View Two-Column Layout Example</b>
 ![Character Counting View Display](https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/CharacterCounterView.JPG?raw=true)
+
+<b>The Character Counter's Edit Two-Column Layout Example</b>
 ![Character Counting View Display](https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/CharacterCounterEdit.JPG?raw=true)
 
 ---
