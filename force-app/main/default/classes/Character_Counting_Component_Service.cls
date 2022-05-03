@@ -4,6 +4,8 @@
 
 public with sharing class Character_Counting_Component_Service
 {
+	private final String STRING_TEXT = 'STRING';
+	private final String TEXT_AREA_TEXT = 'TEXTAREA';
 	private DescribeSObjectResult[] describes;
 
 	public Boolean canUserEditRecord(Id recordId){
@@ -29,13 +31,14 @@ public with sharing class Character_Counting_Component_Service
 		}
 	}
 
-	public List<FieldData> createFieldDataWithNoExistingRecord(List<Schema.FieldSetMember> fieldMetatdata){
+	public List<FieldData> createFieldDataWithNoExistingRecord(List<Schema.FieldSetMember> fieldSetFields){
 		List<FieldData> fieldDataList = new List<FieldData>();
 		Map<String, SObjectField> fieldMap = describes[0].fields.getMap();
-		for(Schema.FieldSetMember field: fieldMetatdata){
+		for(Schema.FieldSetMember field: fieldSetFields){
 			FieldData fieldInfo = new FieldData();
 			fieldInfo.fieldApiName = field.getFieldPath();
-			if(field.getType().name() == 'STRING' || field.getType().name() == 'TEXTAREA'){
+			determineColumnSplit(fieldInfo, fieldSetFields.size());
+			if(field.getType().name() == STRING_TEXT || field.getType().name() == TEXT_AREA_TEXT){
 				SObjectField fieldMetadata = fieldMap.get(field.getFieldPath());
 				fieldInfo.stringFieldLength = fieldMetadata.getDescribe().getLength();
 				fieldInfo.charactersRemaining = fieldInfo.stringFieldLength;
@@ -64,8 +67,9 @@ public with sharing class Character_Counting_Component_Service
 		for(Schema.FieldSetMember field: fieldSetFields){
 			FieldData fieldInfo = new FieldData();
 			fieldInfo.fieldApiName = field.getFieldPath();
+			determineColumnSplit(fieldInfo, fieldSetFields.size());
 			query += fieldInfo.fieldApiName + ',';
-			if(field.getType().name() == 'STRING' || field.getType().name() == 'TEXTAREA'){
+			if(field.getType().name() == STRING_TEXT || field.getType().name() == TEXT_AREA_TEXT){
 				SObjectField fieldMetadata = fieldMap.get(field.getFieldPath());
 				fieldInfo.stringFieldLength = fieldMetadata.getDescribe().getLength();
 				fieldInfo.isString = true;
@@ -77,6 +81,15 @@ public with sharing class Character_Counting_Component_Service
 		System.debug('This is the query ::: ' + query);
 		fieldDataMap = queryForFieldData(query, fieldDataMap, characterWarningThreshold);
 		return fieldDataMap.values();
+	}
+
+	private void determineColumnSplit(FieldData fieldInfo, Integer fieldSetLength){
+		if(Math.mod(fieldSetLength, 2) != 0){
+			fieldInfo.columnSplitPoint = (fieldSetLength/2) + 1;
+		}
+		else{
+			fieldInfo.columnSplitPoint = fieldSetLength;
+		}
 	}
 
 	private Map<String, FieldData> queryForFieldData(String query, Map<String, FieldData> fieldDataMap, Integer characterWarningThreshold){
@@ -130,6 +143,8 @@ public with sharing class Character_Counting_Component_Service
 		public Integer stringFieldLength;
 		@AuraEnabled
 		public Integer currentLength;
+		@AuraEnabled
+		public Integer columnSplitPoint;
 		@AuraEnabled
 		public Boolean isString = false;
 		@AuraEnabled

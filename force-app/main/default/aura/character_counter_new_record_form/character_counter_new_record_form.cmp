@@ -4,9 +4,10 @@
 
 <aura:component description="character_counter_new_record_form"  implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
 	<c:character_counting_component objectApiName="Account"
-									sectionHeader="New Record"
+									sectionHeader="New Account"
 									fieldSetName="AccountFields"
-									displayAsFieldSection="true"
+									displayAsIndependentSection="true"
+									iconName="standard:account"
 									renderSaveButton="true">
 	</c:character_counting_component>
 </aura:component>

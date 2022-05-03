@@ -4,13 +4,14 @@
 
 import {LightningElement, api, track} from 'lwc';
 import {loadStyle} from "lightning/platformResourceLoader";
+import {NavigationMixin} from "lightning/navigation";
 import characterCountingComponentStyle from '@salesforce/resourceUrl/character_counter_css';
 import getFieldsToDisplayController from '@salesforce/apex/Character_Counting_Component_Controller.getFieldsToDisplay';
 import canUserEditRecordController from '@salesforce/apex/Character_Counting_Component_Controller.canUserEditRecord';
 import {ShowToastEvent} from "lightning/platformShowToastEvent";
 
 
-export default class CharacterCountingComponent extends LightningElement {
+export default class CharacterCountingComponent extends NavigationMixin(LightningElement) {
 	@api recordId;
 	@api objectApiName;
 	@api sectionHeader;
@@ -82,7 +83,22 @@ export default class CharacterCountingComponent extends LightningElement {
 	}
 
 	disableEditing(){
-		this.userEditing = false;
+		if(this.recordId) {
+			this.userEditing = false;
+		}
+		else{
+			this.navigateToObjectHomePage();
+		}
+	}
+
+	navigateToObjectHomePage(){
+		this[NavigationMixin.Navigate]({
+			type: 'standard__objectPage',
+			attributes: {
+				objectApiName: this.objectApiName,
+				actionName: 'home'
+			}
+		});
 	}
 
 	updateFieldData(event){
