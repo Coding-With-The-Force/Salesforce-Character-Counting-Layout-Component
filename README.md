@@ -1,4 +1,4 @@
-# The Salesforce Character Counting Component
+# The Salesforce Character Counting Layout Component
 <p align="center">
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
