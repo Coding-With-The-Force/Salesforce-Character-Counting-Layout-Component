@@ -180,5 +180,6 @@ public with sharing class Character_Counting_Component_Service
 	/*
 	  @description: Custom exception type used for throwing errors from within this service class.
 	 */
+	@TestVisible
 	private class CharacterCountingException extends Exception{}
 }

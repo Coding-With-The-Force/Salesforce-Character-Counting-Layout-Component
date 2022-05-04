@@ -10,7 +10,8 @@ service class, comments on each methods purpose can be found within the service 
 
 public with sharing class Character_Counting_Component_Controller
 {
-	private static Character_Counting_Component_Service countingService = new Character_Counting_Component_Service();
+	private static Character_Counting_Component_Service countingService =
+			(Character_Counting_Component_Service)Character_Counting_Component_Application.service.newInstance(Character_Counting_Component_Service.class);
 
 	@AuraEnabled
 	public static List<Character_Counting_Component_Service.FieldData> getFieldsToDisplay(String fieldSetName, String objectApiName, Id recordId, Integer characterWarningThreshold){
