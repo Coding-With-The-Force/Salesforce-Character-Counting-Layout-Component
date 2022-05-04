@@ -66,26 +66,11 @@ However if you are adverse to unlocked packaging (for some crazy reason) you can
 ---
 
 # Setup and Installation Tutorial Video
+
+[![Introduction to the Separation of Concerns Design Principle](https://yt-embed.herokuapp.com/embed?v=_zci5Ug_848)](https://www.youtube.com/watch?v=_zci5Ug_848 "How to Setup and Install The Character Counting Component")
  
 ---
 
-# Setting Up The Component on Record Edit Pages
-
-
----
-
-# Setting Up The Component on New Record Pages
-
----
-
-# Setting Up The Component in Flows
-
-
----
-
-# How to Embed The Component in Other LWC's
-
----
 
 # Suggestions For Developers Setting Up This Component
 
