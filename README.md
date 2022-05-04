@@ -69,7 +69,7 @@ However if you are adverse to unlocked packaging (for some crazy reason) you can
 
 [![Introduction to the Separation of Concerns Design Principle](https://yt-embed.herokuapp.com/embed?v=_zci5Ug_848)](https://www.youtube.com/watch?v=_zci5Ug_848 "How to Setup and Install The Character Counting Component")
  
----
+
 
 
 # Suggestions For Developers Setting Up This Component
