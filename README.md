@@ -74,4 +74,4 @@ However if you are adverse to unlocked packaging (for some crazy reason) you can
 
 # Suggestions For Developers Setting Up This Component
 
-While this component has fairly robust exception catching it does not have logging and it also does not leverage selectors. I chose to do this because I didn't want to load this project with dependencies that you may not want to use yourself and creating a logger or a selector layer solution is not the point of this repo/component. I would suggest that you add error logging and a selector layer that you are comfortable with to this code prior to leveraging it.
+While this component has fairly robust exception handling it does not have logging and it also does not leverage selectors. I chose to do this because I didn't want to load this project with dependencies that you may not want to use yourself and creating a logger or a selector layer solution is not the point of this repo/component. I would suggest that you add error logging and a selector layer that you are comfortable with to this code prior to leveraging it.
