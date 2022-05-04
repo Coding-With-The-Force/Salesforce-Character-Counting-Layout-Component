@@ -1,8 +1,11 @@
 <!--
- - Created by gerry on 5/1/2022.
- -->
+@description: This component is used to display a record edit form that displays character counts for text fields. This is embedded
+in the character_counting_component lwc, but could also be used independently in other components as well if desired.
 
-<!-- Character Counter Record Edit Component -->
+@author: Matt Gerry (codingwiththeforce@gmail.com)
+
+@date: 5/3/2022
+-->
 <template>
 	<lightning-record-edit-form object-api-name={objectApiName} record-id={recordId} onsubmit={saveData} onsuccess={handleSaveSuccess}>
 		<template for:each={fieldDataCopy} for:item="field" for:index="index">

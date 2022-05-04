@@ -1,8 +1,14 @@
 <!--
- - Created by gerry on 4/30/2022.
- -->
+@description: This component is the parent component that is used to display the character counting component. Its purpose is to facilitate
+communication between its subcomponents and the user entered settings to display the character counter as desired. This component is the component
+that will actually be placed within your lightning app builder page, new record page, flow, etc. Its variables are exposed and available to both
+flows and lightning app builder record pages
 
-<!-- Character Counting Component -->
+@author: Matt Gerry (codingwiththeforce@gmail.com)
+
+@date: 5/3/2022
+-->
+
 <template>
 	<lightning-card class="card-background" if:true={displayAsIndependentSection} title={sectionHeader} variant="narrow" icon-name={iconName}>
 		<c-character_counter_record_view_form if:true={notEditingAndDataRetrieved}

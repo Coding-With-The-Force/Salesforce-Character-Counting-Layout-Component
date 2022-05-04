@@ -1,4 +1,13 @@
-/* character_counter_css */
+/*
+@description: This style sheet was created for the character_counting_component and its subcomponents. It should be
+loaded into the character_counter_component lwc for the character counter to display itself properly. All css changes should
+ideally be made here to retain consistency between the various views of the component.
+
+@author: Matt Gerry (codingwiththeforce@gmail.com)
+
+@date: 5/3/2022
+*/
+
 .characters-remaining, .characters-remaining-red{
     font-size: 10px;
     padding: 0.25rem;
@@ -36,6 +45,10 @@
 .edit-icon .slds-button__icon{
     fill: #dddbda !important;
     cursor: pointer;
+}
+
+.column-class:hover svg{
+    fill: gray !important;
 }
 
 .card-background .slds-card__header{
