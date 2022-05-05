@@ -5,10 +5,10 @@
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 <br/>
-<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzaQAA">
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-sandbox.png?raw=true">
 </a>
-<a style="padding-left: 10px" href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzaQAA">
+<a style="padding-left: 10px" href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
 </a>
 </p>
@@ -56,10 +56,10 @@ However if you are adverse to unlocked packaging (for some crazy reason) you can
 <br/>
 
 <p><b><i>Deploy to your org with packaging using one of the links below (HIGHLY SUGGESTED!!):</i></b></p>
-<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzaQAA">
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-sandbox.png?raw=true">
 </a>
-<a style="padding-left: 10px" href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzaQAA">
+<a style="padding-left: 10px" href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
 </a>
 
