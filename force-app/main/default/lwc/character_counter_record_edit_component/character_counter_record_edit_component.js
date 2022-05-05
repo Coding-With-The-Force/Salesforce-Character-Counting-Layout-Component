@@ -1,7 +1,9 @@
 /*
 @description: This component is used to display a record edit form that displays character counts for text fields. This is embedded
 in the character_counting_component lwc, but could also be used independently in other components as well if desired.
+
 @author: Matt Gerry (codingwiththeforce@gmail.com)
+
 @date: 5/3/2022
 */
 
@@ -46,7 +48,7 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 				field.currentLength = fieldValue.length;
 				field.charactersRemaining = field.stringFieldLength - field.currentLength;
 				this.checkFieldConstraints(field);
-				this.addFieldSpecificStyling(field);
+                this.addFieldSpecificStyling(field);
 			}
 		}
 	}
@@ -125,25 +127,25 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 		}));
 	}
 
-	/*
+    /*
 	  @description: Does bookkeeping on field-related styles/counter text
 	 */
-	addFieldSpecificStyling(fieldData) {
-		let inputStyle = '';
-		let paragraphStyle = '';
-		if (fieldData.isString) {
-			inputStyle = 'character-counter';
-			paragraphStyle = `characters-remaining${fieldData.belowCharsThreshold ? '-red' : ''}`;
-			fieldData.paragraphText = `${fieldData.charactersRemaining} characters remaining out of ${fieldData.stringFieldLength}`
-			if (fieldData.noCharsLeft) {
-				fieldData.disabled = true;
-			} else if (fieldData.disabled) {
-				delete fieldData.disabled;
-			}
-		}
-		fieldData.inputStyle = inputStyle;
-		fieldData.paragraphStyle = paragraphStyle;
-		fieldData.paragraphKey = fieldData.fieldApiName + 'paragraph'
-		return fieldData
+    addFieldSpecificStyling(fieldData) {
+        let inputStyle = '';
+        let paragraphStyle = '';
+        if (fieldData.isString) {
+            inputStyle = 'character-counter';
+            paragraphStyle = `characters-remaining${fieldData.belowCharsThreshold ? '-red' : ''}`;
+            fieldData.paragraphText = `${fieldData.charactersRemaining} characters remaining out of ${fieldData.stringFieldLength}`
+            if (fieldData.noCharsLeft) {
+                fieldData.disabled = true;
+            } else if (fieldData.disabled) {
+                delete fieldData.disabled;
+            }
+        }
+        fieldData.inputStyle = inputStyle;
+        fieldData.paragraphStyle = paragraphStyle;
+        fieldData.paragraphKey = fieldData.fieldApiName + 'paragraph'
+        return fieldData
 	}
 }
