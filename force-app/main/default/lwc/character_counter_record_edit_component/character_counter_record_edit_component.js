@@ -1,9 +1,7 @@
 /*
 @description: This component is used to display a record edit form that displays character counts for text fields. This is embedded
 in the character_counting_component lwc, but could also be used independently in other components as well if desired.
-
 @author: Matt Gerry (codingwiththeforce@gmail.com)
-
 @date: 5/3/2022
 */
 
@@ -18,12 +16,11 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 	@api characterWarningThreshold;
 	@api fieldColumns = 1;
 	@track fieldDataCopy;
-	CHARACTERS_REMAINING = 'characters remaining';
 	columnClasses = '';
 
 	connectedCallback() {
-		//Due to this.fieldData being an api exposed variable, we need to clone it to be able to update it. This is how you clone objects in js.
-		this.fieldDataCopy = JSON.parse(JSON.stringify(this.fieldData));
+		// Due to this.fieldData being an api exposed variable, we need to clone it to be able to update it. This is how you clone objects in js.
+		this.fieldDataCopy = JSON.parse(JSON.stringify(this.fieldData)).map(fieldData => this.addFieldSpecificStyling(fieldData));
 		this.determinePageLayout();
 	}
 
@@ -33,7 +30,7 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 	 */
 	determinePageLayout(){
 		if(this.fieldColumns == 2){
-			this.columnClasses = 'slds-col slds-size_6-of-12 slds-p-horizontal_medium slds-float-left inline-grid';
+			this.columnClasses = 'slds-col slds-size_6-of-12 slds-var-p-horizontal_medium slds-float-left inline-grid';
 		}
 	}
 
@@ -48,7 +45,8 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 			if(field.fieldApiName === fieldName){
 				field.currentLength = fieldValue.length;
 				field.charactersRemaining = field.stringFieldLength - field.currentLength;
-				this.checkFieldConstraints(field)
+				this.checkFieldConstraints(field);
+				this.addFieldSpecificStyling(field);
 			}
 		}
 	}
@@ -125,5 +123,27 @@ export default class CharacterCounterRecordEditComponent extends NavigationMixin
 				fielddata: this.fieldDataCopy
 			}
 		}));
+	}
+
+	/*
+	  @description: Does bookkeeping on field-related styles/counter text
+	 */
+	addFieldSpecificStyling(fieldData) {
+		let inputStyle = '';
+		let paragraphStyle = '';
+		if (fieldData.isString) {
+			inputStyle = 'character-counter';
+			paragraphStyle = `characters-remaining${fieldData.belowCharsThreshold ? '-red' : ''}`;
+			fieldData.paragraphText = `${fieldData.charactersRemaining} characters remaining out of ${fieldData.stringFieldLength}`
+			if (fieldData.noCharsLeft) {
+				fieldData.disabled = true;
+			} else if (fieldData.disabled) {
+				delete fieldData.disabled;
+			}
+		}
+		fieldData.inputStyle = inputStyle;
+		fieldData.paragraphStyle = paragraphStyle;
+		fieldData.paragraphKey = fieldData.fieldApiName + 'paragraph'
+		return fieldData
 	}
 }
