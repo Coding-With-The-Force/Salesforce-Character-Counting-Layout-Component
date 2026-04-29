@@ -18,6 +18,9 @@ If you would prefer to install this via an unlocked package to receive updates t
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
 </a>
 <br/>
+<br/>
+
+----
 
 Ever wished you could see how many characters were left when entering text into a 
 text field in Salesforce?? Well this is the answer! It works on every field in every 
