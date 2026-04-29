@@ -1,18 +1,23 @@
 # The Salesforce Character Counting Layout Component
-<p align="center">
-<a href="https://githubsfdeploy.herokuapp.com">
+If you would prefer to not install this via an unlocked package, use the "Deploy to Salesforce" button below to deploy the code to your org.   
+
+<a href="https://githubsfdeploy.herokuapp.com?owner=Coding-With-The-Force&repo=Salesforce-Character-Counting-Layout-Component&ref=master">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
+
 <br/>
+<br/>
+
+If you would prefer to install this via an unlocked package to receive updates to the app in the future, use one of the two links below to deploy the code to your org.   
+
 <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-sandbox.png?raw=true">
 </a>
 <a style="padding-left: 10px" href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4R000001hhzkQAA">
 <img alt="Deploy Unlocked Package to Prod" src="https://github.com/Coding-With-The-Force/Salesforce_Character_Counting_Component/blob/master/images/btn-install-unlocked-package-production.png?raw=true">
 </a>
-</p>
-
+<br/>
 
 Ever wished you could see how many characters were left when entering text into a 
 text field in Salesforce?? Well this is the answer! It works on every field in every 
